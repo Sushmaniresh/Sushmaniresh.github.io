@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Contributions</title>
+</head>
+<body>
+    <h1>Hello, I'm Sushma!</h1>
+    <div id="github-contributions">
+        <h2>GitHub Contributions</h2>
+        <img src="https://github-readme-stats.vercel.app/api?username=Sushmaniresh&show_icons=true&count_private=true&theme=radical" alt="GitHub stats">
+    </div>
+
+    <div id="leetcode-contributions">
+        <h2>LeetCode Contributions</h2>
+        <img src="https://leetcode-stats.vercel.app/api?username=Sushmaniresh" alt="LeetCode stats">
+    </div>
+</body>
+</html>
