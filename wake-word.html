@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wake-Word Detection — Sushma Niresh</title>
+<title>Wake-Word Detection | Sushma Niresh</title>
 <meta name="description" content="Offline, real-time wake-word detection with a 377-parameter CNN.">
-<meta property="og:title" content="Wake-Word Detection — Sushma Niresh">
+<meta property="og:title" content="Wake-Word Detection | Sushma Niresh">
 <meta property="og:description" content="Offline, real-time wake-word detection with a 377-parameter CNN.">
 <meta property="og:image" content="og.png">
 <meta property="og:type" content="website">
@@ -88,7 +88,7 @@ th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;te
 
   <section class="wrap sec"><div class="g12">
     <div style="grid-column: 1 / 4"><h2>Problem</h2></div>
-    <div style="grid-column: 4 / 11"><p>Wake-word detection runs all day on a battery. It has to be always on, never phone home, and fit in kilobytes. The exercise was to find out how small a model can be before it stops hearing you — and to build the live loop around it, not just the training script.</p></div>
+    <div style="grid-column: 4 / 11"><p>Wake-word detection runs all day on a battery. It has to be always on, never phone home, and fit in kilobytes. The exercise was to find out how small a model can be before it stops hearing you, and to build the live loop around it, not just the training script.</p></div>
   </div></section>
 
   <section class="wrap sec"><div class="g12">
@@ -124,7 +124,7 @@ class TinyWakeWordCNN(nn.Module):
         x = torch.sigmoid(self.fc2(x))
         return x</pre>
       <p>The inference loop is the part people skip. A <span class="mono">deque</span> holds one second of audio; a sounddevice callback appends 200 ms blocks; every block the buffer becomes a spectrogram, runs through the model, and prints a probability bar in the terminal.</p>
-      <pre><span class="c"># tiny-pytorch/src/inference.py — the live loop</span>
+      <pre><span class="c"># tiny-pytorch/src/inference.py: the live loop</span>
 FRAME_SIZE  = int(1.0 * 16000)
 STRIDE_SIZE = int(0.2 * 16000)
 audio_buffer = deque(maxlen=FRAME_SIZE)

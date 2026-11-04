@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NYC Yellow Taxi Demand — Sushma Niresh</title>
+<title>NYC Yellow Taxi Demand | Sushma Niresh</title>
 <meta name="description" content="2.96M taxi trips: zone rankings, KDE hotspots and ANOVA.">
-<meta property="og:title" content="NYC Yellow Taxi Demand — Sushma Niresh">
+<meta property="og:title" content="NYC Yellow Taxi Demand | Sushma Niresh">
 <meta property="og:description" content="2.96M taxi trips: zone rankings, KDE hotspots and ANOVA.">
 <meta property="og:image" content="og.png">
 <meta property="og:type" content="website">
@@ -55,11 +55,11 @@ th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;te
   </header>
 
   <section class="wrap" style="padding-top: 56px; padding-bottom: 48px">
-    <div class="label" style="display: flex; justify-content: space-between; margin-bottom: 28px"><span>Case 03 / 04 · Spatial statistics</span><span>ASU DSE 501 · Fall 2024 · Team — I led the geographic analysis</span></div>
+    <div class="label" style="display: flex; justify-content: space-between; margin-bottom: 28px"><span>Case 03 / 04 · Spatial statistics</span><span>ASU DSE 501 · Fall 2024 · Team · I led the geographic analysis</span></div>
     <div class="g12" style="align-items: end">
       <div style="grid-column: 1 / 8">
         <h1 style="margin: 0; font-size: 80px; line-height: 0.95; letter-spacing: -0.04em; font-weight: 500">Where New York hails a cab.</h1>
-        <p style="margin: 24px 0 0; font-size: 20px; line-height: 1.45; max-width: 620px; color: #333">2.96 million yellow-taxi trips from one January, cleaned, mapped and tested. Where demand concentrates, which routes repeat, which boroughs the yellow cab has quietly abandoned — and whether the patterns are statistically real.</p>
+        <p style="margin: 24px 0 0; font-size: 20px; line-height: 1.45; max-width: 620px; color: #333">2.96 million yellow-taxi trips from one January, cleaned, mapped and tested. Where demand concentrates, which routes repeat, which boroughs the yellow cab has quietly abandoned, and whether the patterns are statistically real.</p>
       </div>
       <div style="grid-column: 8 / 13; justify-self: end; width: 100%; max-width: 440px">
         <svg role="img" aria-label="Halftone density map: pickup intensity concentrated in Midtown and the Upper East Side, a second cluster at JFK" class="hero-svg" viewBox="0 0 440 340" style="width: 100%; max-width: 440px; height: auto">
@@ -94,13 +94,13 @@ th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;te
 
   <section class="wrap sec"><div class="g12">
     <div style="grid-column: 1 / 4"><h2>Problem</h2></div>
-    <div style="grid-column: 4 / 11"><p>Everyone "knows" Midtown is busy. The useful questions are sharper: how concentrated is demand, which origin–destination pairs repeat enough to plan around, where is the yellow cab effectively absent, and are the hour and weekday effects large enough to survive a significance test on three million rows?</p></div>
+    <div style="grid-column: 4 / 11"><p>Everyone "knows" Midtown is busy. The useful questions are sharper: how concentrated is demand, which origin-destination pairs repeat enough to plan around, where is the yellow cab effectively absent, and are the hour and weekday effects large enough to survive a significance test on three million rows?</p></div>
   </div></section>
 
   <section class="wrap sec"><div class="g12">
     <div style="grid-column: 1 / 4"><h2>Approach</h2><div class="label" style="margin-top: 10px">clean → explore → map → test</div></div>
     <div style="grid-column: 4 / 13; display: flex; flex-direction: column; gap: 28px">
-      <p>Parse timestamps, derive duration, hour and weekday, drop zero and negative distances and fares. Then distributions, a correlation heatmap, and the time features. My part was the geography: zone rankings, origin–destination route counts, kernel density estimation and hotspot detection, rendered with Folium.</p>
+      <p>Parse timestamps, derive duration, hour and weekday, drop zero and negative distances and fares. Then distributions, a correlation heatmap, and the time features. My part was the geography: zone rankings, origin-destination route counts, kernel density estimation and hotspot detection, rendered with Folium.</p>
       <pre><span class="c"># notebooks/01_eda_cleaning_distributions.ipynb</span>
 df = pd.read_parquet("yellow_tripdata_2024-01.parquet")
 df['tpep_pickup_datetime']  = pd.to_datetime(df['tpep_pickup_datetime'])
@@ -124,7 +124,7 @@ corr = df[['trip_distance', 'fare_amount', 'total_amount',
           <tr><td>Busiest route · UES South → UES North</td><td class="n">≈ 22,000</td></tr>
         </table>
       </div>
-      <p>Statistics closed the loop. A one-way ANOVA on passenger count by weekday (F = 1915.16, p &lt; 0.001) and a two-way model with hour, day and their interaction — all three significant. The patterns are not noise.</p>
+      <p>Statistics closed the loop. A one-way ANOVA on passenger count by weekday (F = 1915.16, p &lt; 0.001) and a two-way model with hour, day and their interaction. All three are significant. The patterns are not noise.</p>
     </div>
   </div></section>
 

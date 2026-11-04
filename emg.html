@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EMG Biometric Authentication — Sushma Niresh</title>
+<title>EMG Biometric Authentication | Sushma Niresh</title>
 <meta name="description" content="Surface EMG from 43 people: can a forearm be a password?">
-<meta property="og:title" content="EMG Biometric Authentication — Sushma Niresh">
+<meta property="og:title" content="EMG Biometric Authentication | Sushma Niresh">
 <meta property="og:description" content="Surface EMG from 43 people: can a forearm be a password?">
 <meta property="og:image" content="og.png">
 <meta property="og:type" content="website">
@@ -55,7 +55,7 @@ ol li{margin-bottom:6px}
   <section class="wrap" style="padding-top: 56px; padding-bottom: 48px">
     <div class="label" style="display: flex; justify-content: space-between; margin-bottom: 28px"><span>Case 04 / 04 · Biometrics</span><span>ASU EEE 598 · Fall 2025 · Team</span></div>
     <h1 style="margin: 0; font-size: 80px; line-height: 0.95; letter-spacing: -0.04em; font-weight: 500; max-width: 980px">Can a forearm be a password?</h1>
-    <p style="margin: 24px 0 0; font-size: 20px; line-height: 1.45; max-width: 680px; color: #333">Surface EMG from 43 people doing 16 hand gestures. Time-domain features and a Random Forest identify who is who at 76% — and the write-up is explicit about why identification is not yet authentication.</p>
+    <p style="margin: 24px 0 0; font-size: 20px; line-height: 1.45; max-width: 680px; color: #333">Surface EMG from 43 people doing 16 hand gestures. Time-domain features and a Random Forest identify who is who at 76%, and the write-up is explicit about why identification is not yet authentication.</p>
     <svg role="img" aria-label="Eight stacked EMG channel traces on the left, a PCA scatter of per-subject feature clusters on the right" viewBox="0 0 1168 300" style="width: 100%; height: auto; margin-top: 40px">
       <g stroke="#111" stroke-opacity=".12" fill="none"><path d="M0 75H760M0 150H760M0 225H760"/><path d="M190 0V300M380 0V300M570 0V300"/><rect x="820" y="0.5" width="347" height="299"/><path d="M820 150H1167M993 0V300" stroke-dasharray="3 4"/></g>
       <g fill="none" stroke="#111" stroke-width="1.25">
@@ -82,7 +82,7 @@ ol li{margin-bottom:6px}
       <div class="stat" style="grid-column: span 3"><div class="label">Subjects</div><b>43</b><span class="label">GRABMyo · 3 sessions each · ≈9 GB</span></div>
       <div class="stat" style="grid-column: span 3"><div class="label">Channels</div><b>32</b><span class="label">16 forearm · 12 wrist · 4 unused, 2048 Hz</span></div>
       <div class="stat" style="grid-column: span 3"><div class="label">Identification accuracy</div><b>76%</b><span class="label">macro-F1 0.75 · 1,024 test recordings</span></div>
-      <div class="stat" style="grid-column: span 3"><div class="label">Per-subject F1 range</div><b>0.41–0.98</b><span class="label">some forearms are much more distinctive</span></div>
+      <div class="stat" style="grid-column: span 3"><div class="label">Per-subject F1 range</div><b>0.41-0.98</b><span class="label">some forearms are much more distinctive</span></div>
     </div>
   </section>
 
@@ -94,7 +94,7 @@ ol li{margin-bottom:6px}
   <section class="wrap sec"><div class="g12">
     <div style="grid-column: 1 / 4"><h2>Approach</h2><div class="label" style="margin-top: 10px">features → forest · filter → spectra · a CNN waiting for data</div></div>
     <div style="grid-column: 4 / 13; display: flex; flex-direction: column; gap: 28px">
-      <p>Five time-domain statistics per channel — mean, standard deviation, RMS, skewness, kurtosis — stacked into a feature vector, then a 100-tree Random Forest on an 80/20 split. A PCA of the feature space already shows subject clusters separating.</p>
+      <p>Five time-domain statistics per channel (mean, standard deviation, RMS, skewness, kurtosis), stacked into a feature vector, then a 100-tree Random Forest on an 80/20 split. A PCA of the feature space already shows subject clusters separating.</p>
       <pre><span class="c"># notebooks/01_feature_extraction_random_forest.ipynb</span>
 from scipy.stats import skew, kurtosis
 
@@ -112,7 +112,7 @@ def extract_features(signal):
 clf = RandomForestClassifier(n_estimators=100, random_state=42)
 clf.fit(X_train, y_train)
 print(classification_report(y_test, clf.predict(X_test)))</pre>
-      <p>A second notebook does the signal work: band-pass and notch filtering, 250 ms windows with 50% overlap, Welch power spectra per channel. And an experimental 2D-CNN treats the (channels × time) window as an image — written, windowed and z-scored per channel with training-session statistics, but not yet adapted to the full 32-channel data, so it reports no numbers.</p>
+      <p>A second notebook does the signal work: band-pass and notch filtering, 250 ms windows with 50% overlap, Welch power spectra per channel. And an experimental 2D-CNN treats the (channels × time) window as an image. It is written, windowed and z-scored per channel with training-session statistics, but not yet adapted to the full 32-channel data, so it reports no numbers.</p>
       <pre><span class="c"># experimental/emg_id_cnn.py</span>
 def zscore_per_channel(x, mean, std, eps=1e-8):
     return (x - mean) / (std + eps)
@@ -140,7 +140,7 @@ class EMG2DCNN(nn.Module):
   <section class="wrap sec"><div class="g12">
     <div style="grid-column: 1 / 4"><h2>Why 76% is not a login screen</h2></div>
     <div style="grid-column: 4 / 11">
-      <p>Two caveats, both stated up front in the README. This is identification (which of 43?) rather than verification (is this the claimed user?), so EER, FAR and FRR are not computed yet. And train and test come from the same session, while EMG drifts across days — cross-day testing is the honest benchmark.</p>
+      <p>Two caveats, both stated up front in the README. This is identification (which of 43?) rather than verification (is this the claimed user?), so EER, FAR and FRR are not computed yet. And train and test come from the same session, while EMG drifts across days, so cross-day testing is the honest benchmark.</p>
       <ol>
         <li>Select fewer electrodes using muscle anatomy and per-electrode ANOVA power.</li>
         <li>Turn the spectral features into a 2D-CNN input and finish the experimental model.</li>
