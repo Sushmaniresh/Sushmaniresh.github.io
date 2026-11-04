@@ -1,0 +1,25 @@
+/* Shared site chrome: toast, NDA modal, focus, motion */
+:root{color-scheme:light}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+:focus-visible{outline:2px solid #111;outline-offset:3px}
+.ndabtn{background:none;border:0;padding:0;cursor:pointer;color:#aaa;text-align:right;font:inherit;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;min-height:44px}
+.ndabtn:hover{color:#fff}
+.toast{position:fixed;left:24px;bottom:24px;z-index:50;display:flex;align-items:center;gap:14px;background:#111;color:#fff;padding:10px 8px 10px 18px;font-family:'Inter Tight',sans-serif;font-size:14px;max-width:min(420px,calc(100vw - 48px));border:1px solid #111;opacity:0;transform:translateY(8px);transition:opacity .2s,transform .2s}
+.toast.show{opacity:1;transform:none}
+.toast[hidden]{display:none}
+.toast .mono{font-family:'JetBrains Mono',monospace}
+.toast-ico{width:16px;height:16px;flex:none;background:no-repeat center/16px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 12L12 4M6 4h6v6' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E")}
+.toast.ok .toast-ico{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5L6.5 12 13 4.5' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E")}
+.toast-x{margin-left:auto;background:none;border:0;color:#aaa;font-family:'JetBrains Mono',monospace;font-size:12px;cursor:pointer;min-width:44px;min-height:44px}
+.toast-x:hover{color:#fff}
+.backdrop{position:fixed;inset:0;z-index:60;background:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;padding:16px}
+.backdrop[hidden]{display:none}
+.modal{background:#fff;color:#111;border:1px solid #111;padding:28px;max-width:440px;width:100%;box-shadow:12px 12px 0 #111;font-family:'Inter Tight',sans-serif}
+.modal h3{margin:0 0 10px;font-size:24px;letter-spacing:-.02em;font-weight:500;line-height:1.1}
+.modal p{margin:0 0 20px;font-size:15px;line-height:1.5;color:#333}
+.modal .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#666}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap}
+.modal .btn{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px;border:1px solid #111;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:#fff;color:#111;cursor:pointer}
+.modal .btn.solid{background:#111;color:#fff}
+@media (prefers-reduced-motion:reduce){.toast{transition:none;transform:none}}
